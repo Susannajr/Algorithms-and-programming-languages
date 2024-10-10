@@ -1,50 +1,50 @@
-#Homework 2
-def insertion_sort_recursive(arr, n):
-    if n <= 1:
+# Homework 2
+def recursive_insertion_sort(sequence, length):
+    if length <= 1:
         return
 
-    insertion_sort_recursive(arr, n-1)
-    last = arr[n-1]
-    j = n-2
+    recursive_insertion_sort(sequence, length - 1)
+    last_element = sequence[length - 1]
+    index = length - 2
 
-    while j >= 0 and arr[j] > last:
-        arr[j+1] = arr[j]
-        j -= 1
+    while index >= 0 and sequence[index] > last_element:
+        sequence[index + 1] = sequence[index]
+        index -= 1
 
-    arr[j+1] = last
+    sequence[index + 1] = last_element
 
-arr = [12, 11, 13, 5, 6]
-insertion_sort_recursive(arr, len(arr))
-print("Sorted array is:", arr)
+numbers = [12, 11, 13, 5, 6]
+recursive_insertion_sort(numbers, len(numbers))
+print("Sorted list is:", numbers)
 
 
-class CustomQueue:
+class Queue:
     def __init__(self):
-        self.queue = []
+        self.items = []
 
     def is_empty(self):
-        return len(self.queue) == 0
+        return len(self.items) == 0
 
-    def enqueue(self, item):
-        self.queue.append(item)
+    def add(self, element):
+        self.items.append(element)
 
-    def dequeue(self):
+    def remove(self):
         if self.is_empty():
-            raise IndexError("Dequeue from an empty queue")
-        return self.queue.pop(0)
+            raise IndexError("Cannot remove from an empty queue")
+        return self.items.pop(0)
 
-    def peek(self):
+    def front(self):
         if self.is_empty():
-            raise IndexError("Peek from an empty queue")
-        return self.queue[0]
+            raise IndexError("Cannot peek at an empty queue")
+        return self.items[0]
 
-    def size(self):
-        return len(self.queue)
+    def length(self):
+        return len(self.items)
 
-queue = CustomQueue()
-queue.enqueue(1)
-queue.enqueue(2)
-queue.enqueue(3)
-print("Dequeued item is:", queue.dequeue())
-print("Peek item is:", queue.peek())
-print("Queue size is:", queue.size())
+custom_queue = Queue()
+custom_queue.add(1)
+custom_queue.add(2)
+custom_queue.add(3)
+print("Removed item is:", custom_queue.remove())
+print("Front item is:", custom_queue.front())
+print("Queue length is:", custom_queue.length())
